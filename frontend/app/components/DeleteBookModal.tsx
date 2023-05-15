@@ -23,7 +23,6 @@ export default function DeleteBookModal({
   deleteBook,
 }: Props) {
   const confirmDelete = () => {
-    console.log("delete");
     deleteBook(bookId, parentId);
     toggleModal();
   };

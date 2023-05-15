@@ -22,7 +22,6 @@ export default function Home() {
   }, []);
 
   const clickFolder = (childFolder: any) => {
-    console.log("childFolder: ", childFolder);
     fetchFolderInformation(childFolder.id);
   };
 
@@ -55,7 +54,10 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
-      <div className="flex flex-col justify-center items-center bg-gray-400 h-screen w-screen rounded-md">
+      <div
+        className="flex flex-col justify-center items-center
+      bg-gray-400 h-screen w-screen rounded-md"
+      >
         {!isLoading ? (
           <>
             <Header

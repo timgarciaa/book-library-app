@@ -44,41 +44,59 @@ export default function Header({
   };
 
   return (
-    <div className="flex flex-row justify-center items-center align-middle m-5">
-      <h3 className="text-4xl font-bold tracking-widest">Location</h3>
-
-      <Breadcrumbs>
-        {parentFolders.length >= 1
-          ? parentFolders.reverse().map((parentFolder: any, index: any) => (
-              <a
-                onDrop={(e) => onDropFileHandler(e, parentFolder)}
-                onDragOver={onDragOverFileHandler}
-                onClick={() => clickFolder(parentFolder)}
-                className="opacity-60"
-                key={index}
-              >
-                {parentFolder.name}
-              </a>
-            ))
-          : null}
-
-        <a onClick={clickSameFolder} className="opacity-60">
-          {folderRecord.name}
-        </a>
-      </Breadcrumbs>
-
-      <button
-        onClick={toggleAddLocationModal}
-        className="bg-[#71aceb] py-1 px-10 rounded-md text-black font-medium text-md m-1"
+    <>
+      <div
+        className="flex flex-col justify-center items-center align-middle m-5 w-full"
       >
-        Add Location
-      </button>
-      <button
-        onClick={toggleAddBookModal}
-        className="bg-[#71aceb] py-1 px-10 rounded-md text-black font-medium text-md m-1"
-      >
-        Add Book
-      </button>
+        <div
+          className="flex flex-col pt-2 items-center sm:flex-row sm:pt-0 w-5/6"
+        >
+          <h3 className="text-4xl font-bold tracking-widest">Location</h3>
+          <div className="overflow-hidden w-full h-[50px] lg:h-auto">
+            <div className="overflow-y-auto h-[50px] bg-gray-200 rounded-sm
+            lg:h-auto">
+              <Breadcrumbs className="" separator=">" fullWidth={true}>
+                {parentFolders.length >= 1
+                  ? parentFolders
+                      .reverse()
+                      .map((parentFolder: any, index: any) => (
+                        <a
+                          onDrop={(e) => onDropFileHandler(e, parentFolder)}
+                          onDragOver={onDragOverFileHandler}
+                          onClick={() => clickFolder(parentFolder)}
+                          className="opacity-60"
+                          key={index}
+                        >
+                          {parentFolder.name}
+                        </a>
+                      ))
+                  : null}
+
+                <a onClick={clickSameFolder} className="opacity-60">
+                  {folderRecord.name}
+                </a>
+              </Breadcrumbs>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex flex-col pt-2 sm:flex-row">
+          <button
+            onClick={toggleAddLocationModal}
+            className="bg-[#71aceb] py-1 rounded-md text-black font-medium text-md m-1
+          hover:bg-gray-300 w-40"
+          >
+            Add Location
+          </button>
+          <button
+            onClick={toggleAddBookModal}
+            className="bg-[#71aceb] py-1 rounded-md text-black font-medium text-md m-1
+          hover:bg-gray-300 w-40"
+          >
+            Add Book
+          </button>
+        </div>
+      </div>
 
       <AddLocationModal
         isOpen={isOpenLocationModal}
@@ -93,6 +111,6 @@ export default function Header({
         folderRecord={folderRecord}
         createBook={createBook}
       />
-    </div>
+    </>
   );
 }

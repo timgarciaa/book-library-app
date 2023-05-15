@@ -32,13 +32,7 @@ export default function FileContainer({
   const toggleDeleteBookModal = () =>
     setIsOpenDeleteBookModal(!isOpenDeleteBookModal);
 
-  // const clickFolder = (childFolder: any) => {
-  //   console.log('click folder', childFolder.id);
-  // };
-
   const onFileDrag = (e: any, childFile: any) => {
-    // e.preventDefault();
-    console.log("childFile: ", JSON.stringify(childFile));
     e.dataTransfer.setData("fileId", childFile.id);
     e.dataTransfer.setData("parentId", childFile.folderRecordId);
   };
@@ -65,6 +59,8 @@ export default function FileContainer({
       {folderRecord.parentId != null ? (
         <>
           <div
+            onDrop={(e) => onDropFileHandler(e, { id: folderRecord.parentId })}
+            onDragOver={onDragOverFileHandler}
             onClick={() => clickFolder({ id: folderRecord.parentId })}
             className="flex gap-1 cursor-pointer border-b-[1px] border-gray-500 py-1
             hover:border-[#F7AB0A]/40 hover:bg-gray-300 rounded-sm"
