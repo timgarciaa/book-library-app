@@ -21,3 +21,7 @@ CREATE UNIQUE INDEX "FolderRecord_name_parentId_key" ON "FolderRecord"("name", "
 
 -- AddForeignKey
 ALTER TABLE "FileRecord" ADD CONSTRAINT "FileRecord_folderRecordId_fkey" FOREIGN KEY ("folderRecordId") REFERENCES "FolderRecord"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+--Add initial value
+INSERT INTO "FolderRecord" (id, name, parentId)
+VALUES (1, 'Home', NULL);
